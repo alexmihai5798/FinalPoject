@@ -75,13 +75,28 @@ public class StepDefinitions {
     }
 
     @When("I press twitter button")
-    public void i_press_facebook_button() {
+    public void i_press_twitter_button() {
         mainPage.clickOnTwitterButton();
     }
 
     @Then("It takes me to the {string} page")
-    public void it_takes_me_to_the_twitter_page(String string) {
+    public void it_takes_me_to_the_page(String string) {
         Assert.assertTrue(driver.getTitle().toLowerCase().startsWith(string));
+    }
+
+    @When("I press facebook button")
+    public void i_press_facebook_button() {
+        mainPage.clickOnFacebookButton();
+    }
+
+    @When("I press linkedin button")
+    public void i_press_linkedin_button() {
+        mainPage.clickOnLinkedInButton();
+    }
+
+    @When("I press the instagram button")
+    public void i_press_the_instagram_button() {
+        mainPage.clickOnInstagramButton();
     }
 
     @Given("I am on the FAQ section")
@@ -181,7 +196,7 @@ public class StepDefinitions {
 
     @When("I select Software Testing - Manual tester certificate")
     public void i_select_software_testing_manual_tester_certificate() {
-        enrollmentPage.clickOnManualTesteCheckBox();
+        enrollmentPage.clickOnManualTesterCheckBox();
     }
 
     @When("I press next button from the course options")
@@ -192,6 +207,29 @@ public class StepDefinitions {
     @Then("we should be taken to the payment information")
     public void we_should_be_taken_to_the_payment_information() {
         Assert.assertTrue(driver.getPageSource().contains("Payment information"));
+    }
+
+    @Given("I am on the payment information section")
+    public void i_am_on_the_payment_information_section() {
+        driver.get("file:///C:/Users/Alex/Desktop/Testing%20Env/Testing-Env/routes/enrollment.html");
+        enrollmentPage.fillInPersonalInformation();
+        enrollmentPage.clickOnNextButton();
+        enrollmentPage.fillInContactInformation();
+        enrollmentPage.clickOnContactInfoNextButton();
+        enrollmentPage.clickOnManualTesterCheckBox();
+        enrollmentPage.clickOnCourseOptionsNextButton();
+    }
+    @When("I introduce the payment data")
+    public void i_introduce_the_payment_data() {
+        enrollmentPage.fillInPaymentInformation();
+    }
+    @When("I press next button from payment information")
+    public void i_press_next_button_from_payment_information() {
+        enrollmentPage.clickOnPaymentInfoNextButton();
+    }
+    @Then("we should receive a confirmation of the full enrollment process")
+    public void we_should_receive_a_confirmation_of_the_full_enrollment_process() {
+        Assert.assertTrue(driver.getPageSource().contains("Success!"));
     }
 
     @Given("I am on the enrollment page")

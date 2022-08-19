@@ -19,6 +19,12 @@ Feature: Enrollment Page
     And I press next button from the course options
     Then we should be taken to the payment information
 
+  Scenario: Valid payment information test
+    Given I am on the payment information section
+    When I introduce the payment data
+    And I press next button from payment information
+    Then we should receive a confirmation of the full enrollment process
+
   Scenario: Invalid personal
     Given I am on the enrollment page
     When I press next button without introduce data
